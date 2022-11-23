@@ -11,12 +11,13 @@ author      jj
 
 [mitm]
 hostname = 103.41.167.235
+hostname = 113.105.165.124
 
 */
 
 if ($request.url.indexOf("topstory/recommend") != -1) {
   var bodyObj = JSON.parse($response.body);
-  bodyObj.data.data = Object.values(bodyObj.data.data).filter((item) => !item.ad);
+  bodyObj.data = Object.values(bodyObj.data).filter((item) => !item.ad);
   $done({
       body: JSON.stringify(bodyObj),
   });
