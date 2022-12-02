@@ -21,6 +21,12 @@ if ($request.url.indexOf("topstory/recommend") != -1) {
   $done({
       body: JSON.stringify(bodyObj),
   });
+} else if (/\/api\/v\d\/articles\/\d+\/recommendation/.test($request.url)) {
+  var bodyObj = JSON.parse($response.body);
+  bodyObj.ad_info = null;
+  $done({
+    body: JSON.stringify(bodyObj),
+});
 } else {
   $done($response);
 }
