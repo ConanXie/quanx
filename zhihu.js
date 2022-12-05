@@ -19,14 +19,20 @@ if ($request.url.indexOf("topstory/recommend") != -1) {
   var bodyObj = JSON.parse($response.body);
   bodyObj.data = Object.values(bodyObj.data).filter((item) => !item.ad);
   $done({
-      body: JSON.stringify(bodyObj),
+    body: JSON.stringify(bodyObj),
   });
 } else if (/\/api\/v\d\/articles\/\d+\/recommendation/.test($request.url)) {
   var bodyObj = JSON.parse($response.body);
   bodyObj.ad_info = null;
   $done({
     body: JSON.stringify(bodyObj),
-});
+  });
+} else if (/\/api\/v\d\/answers\/\d+\/recommendations/.test($request.url)) {
+  var bodyObj = JSON.parse($response.body);
+  bodyObj.data = [];
+  $done({
+    body: JSON.stringify(bodyObj),
+  });
 } else {
   $done($response);
 }
