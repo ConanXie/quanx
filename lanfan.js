@@ -19,22 +19,19 @@ if (/\/api\/v\d\/(user|account|daily_menus|homepage|recipe)/.test($request.url))
   var url = $request.url;
   if (url.indexOf('/user/page_detail.json') > -1 || url.indexOf('/account/login_via_phone.json') > -1) {
     body.content.user.is_prime = true;
-  }
-  if (url.indexOf('/user/prime.json') > -1) {
+  } else if (url.indexOf('/user/prime.json') > -1) {
     body.content.user.is_prime = true;
     body.content.user.prime.is_prime = true;
     body.content.user.user_homepage_prime_banner = {
       "button_text": "🐔",
       "text": "宇宙无敌超级VIP"
     };
-  }
-  if (url.indexOf('/daily_menus/paged.json') > -1) {
+  } else if (url.indexOf('/daily_menus/paged.json') > -1) {
     body.content.daily_menus.forEach((item) => {
       item.unlocked = true;
       item.watch_type = 1;
     });
-  }
-  if (url.indexOf('/homepage/feed.json') > -1) {
+  } else if (url.indexOf('/homepage/feed.json') > -1) {
     body.content.feeds.forEach((item) => {
       if (item.data && item.data.unlocked !== undefined) {
         item.data.unlocked = true;
@@ -56,8 +53,7 @@ if (/\/api\/v\d\/(user|account|daily_menus|homepage|recipe)/.test($request.url))
         })
       }
     });
-  }
-  if (url.indexOf('/recipe/page_detail.json') > -1) {
+  } else if (url.indexOf('/recipe/page_detail.json') > -1) {
     body.content.note_data.image_notes.forEach((item) => {
       item.user.is_prime = true;
     });
