@@ -62,6 +62,10 @@ if (/\/api\/v\d\/(user|account|daily_menus|homepage|recipe)/.test($request.url))
       item.watch_type = 1;
     });
     body.content.recipe.unlocked = true;
+  } else if (url.indexOf('/plan/paged.json') > -1) {
+    body.content.plans.forEach((item) => {
+      item.watch_type = 1;
+    });
   }
   $done({
       body: JSON.stringify(body),
