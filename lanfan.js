@@ -1,5 +1,5 @@
 /*
-version     v0.0.2
+version     v0.0.3
 updatetime  2023-04-12
 tgchannel   https://t.me/ddgksf2021
 function    懒饭app会员
@@ -15,7 +15,8 @@ hostname = lanfanapp.com
 */
 
 if (/\/api\/v\d\/(user|account|daily_menus|homepage|recipe)/.test($request.url)) {
-  var body = JSON.parse($response.body);
+  const body = JSON.parse($response.body);
+  const { url } = $request
   if (url.indexOf('/user/page_detail.json') > -1 || url.indexOf('/account/login_via_phone.json') > -1) {
     body.content.user.is_prime = true;
   }
