@@ -14,11 +14,12 @@ hostname = dicts.cn
 
 */
 
-if (/\/dict\/service\/UserCenter\/Login\.au/.test($request.url)) {
+if (/\/dict\/service\/UserCenter\/(Login|GetUserInfo)\.au/.test($request.url)) {
   var body = JSON.parse($response.body);
 
   if (body.UserInfo) {
     body.UserInfo.gu_type = 1;
+    body.UserInfo.gu_money = 100;
   }
   
   $done({
